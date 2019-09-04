@@ -2,8 +2,8 @@
 .classpath
 .project
 build.fxbuild
-bin/
-.settings/
+bin/*
+.settings/*
 
 
 # arquivos .class

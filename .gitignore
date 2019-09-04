@@ -4,3 +4,8 @@
 build.fxbuild
 bin/
 .settings/
+
+
+# arquivos .class
+
+*.class

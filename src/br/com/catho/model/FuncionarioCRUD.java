@@ -14,7 +14,9 @@ public class FuncionarioCRUD {
 	public static List<Funcionario> getFuncionarios() {
 		return FuncionarioCRUD.funcionarios;
 	}
-	
+	public static void setFuncionarios(List<Funcionario> listaAtualizada) {
+		FuncionarioCRUD.funcionarios = listaAtualizada;
+	}
 	private static boolean cpfJaExistente(String CPF) {
 		for(Funcionario f : funcionarios) {
 			if( f != null ) {
@@ -39,9 +41,10 @@ public class FuncionarioCRUD {
 			return null;
 		}
 	}
-	public static Funcionario alteracao( String cpf, String novoNome, String novoCPF, String novaFuncao) {
+	
+	public static void alteracao( String cpf, String novoNome, String novoCPF, String novaFuncao) {
 		for( Funcionario f : funcionarios ) {
-			if( f.getCpf() != null & f.getCpf().equals(cpf) ) {
+			if( f.getCpf().equals(cpf) ) {
 				System.out.println("Funcionario: "+ f.toString());
 				if( !novoCPF.isBlank() || !novoCPF.isEmpty()) {
 					f.setCpf(novoCPF);
@@ -50,14 +53,15 @@ public class FuncionarioCRUD {
 					f.setNome(novoNome);	
 				}
 				if( !novaFuncao.isBlank() || !novaFuncao.isEmpty()) {
-					f.setFuncao(novaFuncao);					
+					f.setFuncao(novaFuncao);
 				}
 				System.out.println("Foi alterado para: \n"+ f.toString());
-				return f;
+				FuncionarioCRUD.setFuncionarios(funcionarios);
+				return;
 			}
 		}
 		System.out.println("Funcionario não encontrado");
-		return null;
+		return;
 	}
 	
 	public static void exclusao(String cpf) {

@@ -30,30 +30,38 @@ public class AlterarController implements Initializable{
 				textFieldNovoCPF.getText(),
 				textFieldNovaFuncao.getText());
 		
+		// Atualiza a lista da View ListarTodos
+		ListarTodosController view = new ListarTodosController();
+		view.setObservableList(view.atualizaTabela());
+		
 	}
 	
 	@FXML void btAlterarOnClicked() {
 		changeDataUser();
+		closeAlterarStage();
 	}
 	
 	@FXML void btAlterarOnKeyPressed(KeyEvent event) {
 		if( ButtonOnAction.hasUserConfirmed(event)) {
 			changeDataUser();
+			closeAlterarStage();
 		}
 	}
 	
 	@FXML void btCancelarOnClicked() {
-		MainProgram main = new MainProgram();
-		main.start(new Stage());
-		Alterar.close();
+		closeAlterarStage();
 	}
 	
 	@FXML void btCancelarOnKeyPressed(KeyEvent event) {
 		if( ButtonOnAction.hasUserConfirmed(event) )
+			closeAlterarStage();
 			
-			Alterar.close();
 	}
-	
+	private void closeAlterarStage() {
+		MainProgram main = new MainProgram();
+		main.start(new Stage());
+		Alterar.close();
+	}
 	@Override public void initialize(URL arg0, ResourceBundle arg1) {}
 
 }

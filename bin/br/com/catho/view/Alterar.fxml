@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.catho.controller.AlterarController">
+   <children>
+      <Button fx:id="btCancelar" layoutX="70.0" layoutY="345.0" mnemonicParsing="false" onKeyPressed="#btCancelarOnKeyPressed" onMouseClicked="#btCancelarOnClicked" text="Cancelar" />
+      <Button fx:id="btAlterar" layoutX="229.0" layoutY="345.0" mnemonicParsing="false" onKeyPressed="#btAlterarOnKeyPressed" onMouseClicked="#btAlterarOnClicked" text="Alterar" />
+      <TextField fx:id="textFieldNovoNome" layoutX="70.0" layoutY="200.0" prefHeight="25.0" prefWidth="211.0" promptText="Novo Nome do Funcionario" />
+      <TextField fx:id="textFieldNovoCPF" layoutX="70.0" layoutY="250.0" prefHeight="25.0" prefWidth="211.0" promptText="Novo CPF ( Opcional )" />
+      <TextField fx:id="textFieldNovaFuncao" layoutX="70.0" layoutY="296.0" prefHeight="25.0" prefWidth="211.0" promptText="Nova Função do Funcionario" />
+      <TextField fx:id="textFieldCPFDesejado" layoutX="70.0" layoutY="100.0" prefHeight="25.0" prefWidth="211.0" promptText="CPF para localização do funcionario" />
+      <Label layoutX="41.0" layoutY="46.0" text="Alteração dos Dados do funcionario">
+         <font>
+            <Font name="Constantia Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="127.0" layoutY="155.0" text="Novos dados">
+         <font>
+            <Font name="Constantia Italic" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

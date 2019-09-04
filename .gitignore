@@ -1,0 +1,6 @@
+# arquivos da IDE
+.classpath
+.project
+build.fxbuild
+bin/
+.settings/

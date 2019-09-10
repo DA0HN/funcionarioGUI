@@ -9,3 +9,4 @@ bin/*
 # arquivos .class
 
 *.class
+/bin/

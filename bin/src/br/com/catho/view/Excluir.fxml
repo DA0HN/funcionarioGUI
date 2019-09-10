@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.catho.controller.ExcluirController">
+   <children>
+      <Button fx:id="btExcluir" layoutX="289.0" layoutY="145.0" mnemonicParsing="false" onKeyPressed="#btExcluirOnKeyPressed" onMouseClicked="#btExcluirOnClicked" text="Exlcuir" />
+      <Button fx:id="btCancelar" layoutX="55.0" layoutY="145.0" mnemonicParsing="false" onKeyPressed="#btCancelarOnKeyPressed" onMouseClicked="#btCancelarOnClicked" text="Cancelar" />
+      <TextField fx:id="textFieldCPF" layoutX="55.0" layoutY="75.0" onKeyPressed="#textFieldCPFOnKeyPressed" prefHeight="25.0" prefWidth="284.0" promptText="Exemplo: 001.001.001-01" />
+      <Label layoutX="34.0" layoutY="25.0" text="Insira o CPF do funcionario para Exclusão" textAlignment="CENTER">
+         <font>
+            <Font name="Constantia Italic" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

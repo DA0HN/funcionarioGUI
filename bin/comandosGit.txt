@@ -1,0 +1,28 @@
+
+# criação de tags para controle de versão do código
+
+git tag -a v0.1 -m "Versão 0.1"		# cria uma tag v0.1
+git tag					# apresenta todas as tags
+git tag -l v0.*				# lista apenas as tags que começam com v0.
+git show v0.1				# Exibe qual é o commit da tag v0.1 e quem é o autor
+git push origin v0.1			# envia a tag para o repositório remoto
+
+# como enviar para o repositório remoto
+
+git pull 					# atualiza o repositório local com o que há de novo no remoto
+git add ARQUIVO_DIRETORIO			# adiciona o arquivo a área de stage
+
+git commit -m "DESCRIÇÃO DO QUE FOI REALIZADO"	# gera uma nova versão no repositório local
+git push					# envia a nota versão para o repositório remoto
+
+git commit -a -m "DESCRIÇÃO DO QUE FOI REALIZADO"	# commando git add ( all ) junto com o commit 
+
+# Branch
+
+git branch novaFunc			# cria uma nova branch
+git checkout novaFunc			# altera o ponteiro HEAD para a novaFunc
+
+git checkout -b novaFunc		# os dois comandos acima ao mesmo tempo
+
+git branch -d novaFunc			# deleta a branch novaFunc
+		

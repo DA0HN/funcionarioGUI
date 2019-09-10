@@ -33,7 +33,7 @@ public class ListarTodosController implements Initializable{
 	}
 	
 	public void initTableView() {
-		
+		// TODO: implementar padrao observable para correcao do bug de interacao com a classe AlterarController 
 		colNome.setCellValueFactory(new PropertyValueFactory<>("nome") );
 		colCPF.setCellValueFactory(new PropertyValueFactory<>("cpf") );
 		colFuncao.setCellValueFactory(new PropertyValueFactory<>("funcao") );

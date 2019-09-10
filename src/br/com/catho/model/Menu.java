@@ -1,6 +1,6 @@
 package br.com.catho.model;
 
-import br.edu.ifmt.cba.util.Teclado;
+import util.Teclado;
 
 public class Menu {
 	

@@ -2,7 +2,7 @@ package br.com.catho.controller;
 
 import br.com.catho.application.Excluir;
 import br.com.catho.application.MainProgram;
-import br.com.catho.model.FuncionarioCRUD;
+import br.com.catho.model.service.FuncionarioService;
 import br.com.catho.util.ButtonOnAction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,7 +24,7 @@ public class ExcluirController {
 	
 	private void removeUserData() {
 		String cpf = textFieldCPF.getText();
-		FuncionarioCRUD.exclusao(cpf);
+		FuncionarioService.exclusao(cpf);
 	}
 	
 	@FXML void btCancelarOnClicked() {

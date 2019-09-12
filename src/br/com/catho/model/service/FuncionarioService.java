@@ -1,9 +1,11 @@
-package br.com.catho.model;
+package br.com.catho.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FuncionarioCRUD {
+import br.com.catho.model.entities.Funcionario;
+
+public class FuncionarioService {
 	
 	private static List<Funcionario> funcionarios = new ArrayList<>();
 	
@@ -12,10 +14,10 @@ public class FuncionarioCRUD {
 	}
 	
 	public static List<Funcionario> getFuncionarios() {
-		return FuncionarioCRUD.funcionarios;
+		return FuncionarioService.funcionarios;
 	}
 	public static void setFuncionarios(List<Funcionario> listaAtualizada) {
-		FuncionarioCRUD.funcionarios = listaAtualizada;
+		FuncionarioService.funcionarios = listaAtualizada;
 	}
 	private static boolean cpfJaExistente(String CPF) {
 		for(Funcionario f : funcionarios) {
@@ -30,9 +32,9 @@ public class FuncionarioCRUD {
 	public static Funcionario cadastro(String nome, String cpf, String funcao) {
 		if( !cpfJaExistente(cpf) ) {
 			Funcionario f = new Funcionario(
-					nome,
-					cpf,
-					funcao);
+									nome,
+									cpf,
+									funcao);
 			funcionarios.add(f);
 			return f;
 		}
@@ -56,7 +58,7 @@ public class FuncionarioCRUD {
 					f.setFuncao(novaFuncao);
 				}
 				System.out.println("Foi alterado para: \n"+ f.toString());
-				FuncionarioCRUD.setFuncionarios(funcionarios);
+				FuncionarioService.setFuncionarios(funcionarios);
 				return;
 			}
 		}

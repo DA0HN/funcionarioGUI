@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import br.com.catho.application.Cadastro;
 import br.com.catho.application.MainProgram;
-import br.com.catho.model.FuncionarioCRUD;
+import br.com.catho.model.service.FuncionarioService;
 import br.com.catho.util.ButtonOnAction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +30,7 @@ public class CadastroController implements Initializable{
 			String CPF = textFieldCPF.getText();
 			String funcao = textFieldFuncao.getText();
 			
-			System.out.println(FuncionarioCRUD.cadastro(nome, CPF, funcao).toString());
+			System.out.println(FuncionarioService.cadastro(nome, CPF, funcao).toString());
 			
 		}catch(Exception e) {
 			e.getMessage();

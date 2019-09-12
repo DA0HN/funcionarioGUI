@@ -3,8 +3,8 @@ package br.com.catho.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import br.com.catho.model.Funcionario;
-import br.com.catho.model.FuncionarioCRUD;
+import br.com.catho.model.entities.Funcionario;
+import br.com.catho.model.service.FuncionarioService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -53,6 +53,6 @@ public class ListarTodosController implements Initializable{
 	}
 
 	public ObservableList<Funcionario> atualizaTabela(){
-		return FXCollections.observableArrayList( FuncionarioCRUD.getFuncionarios() );
+		return FXCollections.observableArrayList( FuncionarioService.getFuncionarios() );
 	}
 }

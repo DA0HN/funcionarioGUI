@@ -1,4 +1,4 @@
-package br.com.catho.model;
+package br.com.catho.model.entities;
 
 public class Funcionario {
 	

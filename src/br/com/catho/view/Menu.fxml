@@ -9,17 +9,17 @@
    <children>
       <VBox layoutX="127.0" layoutY="144.0" prefHeight="200.0" prefWidth="150.0">
          <children>
-            <Button fx:id="btCadastro" mnemonicParsing="false" onMouseClicked="#btCadastroOnClicked" prefHeight="25.0" prefWidth="155.0" text="Cadastro" />
+            <Button fx:id="btCadastro" mnemonicParsing="false" onKeyPressed="#btCadastroOnKeyPressed" onMouseClicked="#btCadastroOnClicked" prefHeight="25.0" prefWidth="155.0" text="Cadastro" />
             <Separator orientation="VERTICAL" prefHeight="20.0" />
-            <Button fx:id="btEcluir" mnemonicParsing="false" onMouseClicked="#btExcluirOnClicked" prefHeight="25.0" prefWidth="155.0" text="Excluir" />
+            <Button fx:id="btEcluir" mnemonicParsing="false" onKeyPressed="#btExcluirOnKeyPressed" onMouseClicked="#btExcluirOnClicked" prefHeight="25.0" prefWidth="155.0" text="Excluir" />
             <Separator orientation="VERTICAL" prefHeight="20.0" />
-            <Button fx:id="btAlterar" mnemonicParsing="false" onMouseClicked="#btAlterarOnClicked" prefHeight="25.0" prefWidth="155.0" text="Alterar" />
+            <Button fx:id="btAlterar" mnemonicParsing="false" onKeyPressed="#btAlterarOnKeyPressed" onMouseClicked="#btAlterarOnClicked" prefHeight="25.0" prefWidth="155.0" text="Alterar" />
             <Separator orientation="VERTICAL" prefHeight="20.0" />
-            <Button fx:id="btListarTodos" mnemonicParsing="false" onMouseClicked="#btListarTodosOnClicked" prefHeight="25.0" prefWidth="155.0" text="Listar Todos" />
+            <Button fx:id="btListarTodos" mnemonicParsing="false" onKeyPressed="#btListarTodosOnKeyPressed" onMouseClicked="#btListarTodosOnClicked" prefHeight="25.0" prefWidth="155.0" text="Listar Todos" />
             <Separator orientation="VERTICAL" prefHeight="20.0" />
             <Button fx:id="btNumeroDeFuncionarios" mnemonicParsing="false" onMouseClicked="#btNumeroDeFuncionariosOnClicked" prefHeight="25.0" prefWidth="155.0" text="Número De Funcionários" />
          </children>
       </VBox>
-      <Button fx:id="btSair" layoutX="127.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#btSairOnClicked" prefHeight="25.0" prefWidth="155.0" text="Sair" />
+      <Button fx:id="btSair" layoutX="127.0" layoutY="425.0" mnemonicParsing="false" onKeyPressed="#btSairOnKeyPressed" onMouseClicked="#btSairOnClicked" prefHeight="25.0" prefWidth="155.0" text="Sair" />
    </children>
 </AnchorPane>

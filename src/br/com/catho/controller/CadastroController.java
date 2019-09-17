@@ -3,10 +3,10 @@ package br.com.catho.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import br.com.catho.application.Cadastro;
-import br.com.catho.application.Menu;
 import br.com.catho.model.service.FuncionarioService;
 import br.com.catho.util.ButtonOnAction;
+import br.com.catho.view.Cadastro;
+import br.com.catho.view.Menu;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

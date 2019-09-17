@@ -1,4 +1,4 @@
-package br.com.catho.application;
+package br.com.catho.view;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ public class ListarTodos extends Application{
 	
 	@Override public void start(Stage stage) {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("../view/ListarTodos.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("../fxml/ListarTodos.fxml"));
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
 			stage.setTitle("Listar Todos Funcionarios");

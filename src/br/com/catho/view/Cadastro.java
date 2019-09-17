@@ -1,4 +1,4 @@
-package br.com.catho.application;
+package br.com.catho.view;
 
 import java.io.IOException;
 
@@ -8,17 +8,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Alterar extends Application{
+public class Cadastro extends Application {
 
 	private static Stage stage;
 	
 	@Override public void start(Stage stage) {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("../view/Alterar.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("../fxml/Cadastro.fxml"));
 			Scene scene = new Scene(parent);
-			stage.setScene(scene);
-			stage.setTitle("Alterar");
+			stage.setTitle("Cadastro");
 			stage.setResizable(false);
+			stage.setScene(scene);
 			setStage(stage);
 			stage.show();
 		}
@@ -26,17 +26,14 @@ public class Alterar extends Application{
 			e.getMessage();
 		}
 	}
-	
+	public static void close() {
+		Cadastro.getStage().close();
+	}
 	public static Stage getStage() {
-		return Alterar.stage;
+		return Cadastro.stage;
 	}
 	public static void setStage(Stage stage) {
-		Alterar.stage = stage;
+		Cadastro.stage = stage;
 	}
-	public static void close() {
-		Alterar.getStage().close();
-	}
-	public static void main(String[] args) {
-		launch(args);
-	}
+	
 }

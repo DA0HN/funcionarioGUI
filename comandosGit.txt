@@ -25,4 +25,9 @@ git checkout novaFunc			# altera o ponteiro HEAD para a novaFunc
 git checkout -b novaFunc		# os dois comandos acima ao mesmo tempo
 
 git branch -d novaFunc			# deleta a branch novaFunc
-		
+
+
+# associar repositório local com repositório remoto
+
+git remote add origin ( link do repositorio )
+	

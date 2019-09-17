@@ -1,4 +1,4 @@
-package br.com.catho.application;
+package br.com.catho.view;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ public class Excluir extends Application{
 	
 	@Override public void start(Stage stage)  {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("../view/Excluir.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("../fxml/Excluir.fxml"));
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
 			stage.setTitle("Excluir funcionário");
@@ -22,14 +22,9 @@ public class Excluir extends Application{
 			setStage(stage);
 			stage.show();
 		}catch(IOException e) {
-			e.getMessage();
+			System.out.println(e.getMessage()); 
 		}
 	}
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
 	public static void close() {
 		Excluir.getStage().close();
 	}

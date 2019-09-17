@@ -1,4 +1,4 @@
-package br.com.catho.application;
+package br.com.catho.view;
 
 import java.io.IOException;
 
@@ -8,16 +8,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class ListarTodos extends Application{
+public class Alterar extends Application{
 
 	private static Stage stage;
 	
 	@Override public void start(Stage stage) {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("../view/ListarTodos.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("../fxml/Alterar.fxml"));
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
-			stage.setTitle("Listar Todos Funcionarios");
+			stage.setTitle("Alterar");
 			stage.setResizable(false);
 			setStage(stage);
 			stage.show();
@@ -25,20 +25,15 @@ public class ListarTodos extends Application{
 		catch(IOException e) {
 			e.getMessage();
 		}
-		
 	}
 	
-	public static void setStage(Stage stage) {
-		ListarTodos.stage = stage;
-	}
 	public static Stage getStage() {
-		return ListarTodos.stage;
+		return Alterar.stage;
+	}
+	public static void setStage(Stage stage) {
+		Alterar.stage = stage;
 	}
 	public static void close() {
-		ListarTodos.getStage().close();
-	}
-	
-	public static void main(String[] args) {
-		launch(args);
+		Alterar.getStage().close();
 	}
 }

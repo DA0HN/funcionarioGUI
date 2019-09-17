@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainProgram extends Application{
+public class Menu extends Application{
 
 	private static Stage stage;
 	
@@ -32,13 +32,13 @@ public class MainProgram extends Application{
 	}
 	
 	public static Stage getStage() {
-		return MainProgram.stage;
+		return Menu.stage;
 	}
 	
 	public static void setStage(Stage stage) {
-		MainProgram.stage = stage;
+		Menu.stage = stage;
 	}
 	public static void close() {
-		MainProgram.getStage().close();
+		Menu.getStage().close();
 	}
 }

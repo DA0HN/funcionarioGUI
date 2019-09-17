@@ -1,7 +1,7 @@
 package br.com.catho.controller;
 
 import br.com.catho.application.Excluir;
-import br.com.catho.application.MainProgram;
+import br.com.catho.application.Menu;
 import br.com.catho.model.service.FuncionarioService;
 import br.com.catho.util.ButtonOnAction;
 import javafx.fxml.FXML;
@@ -17,7 +17,7 @@ public class ExcluirController {
 	@FXML private TextField textFieldCPF;
 	
 	private void closeExcluirStage() {
-		MainProgram main = new MainProgram();
+		Menu main = new Menu();
 		main.start(new Stage());
 		Excluir.close();
 	}

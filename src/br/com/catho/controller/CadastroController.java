@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import br.com.catho.application.Cadastro;
-import br.com.catho.application.MainProgram;
+import br.com.catho.application.Menu;
 import br.com.catho.model.service.FuncionarioService;
 import br.com.catho.util.ButtonOnAction;
 import javafx.fxml.FXML;
@@ -58,7 +58,7 @@ public class CadastroController implements Initializable{
 	}
 	
 	private void closeCadastroStage() {
-		MainProgram main = new MainProgram();
+		Menu main = new Menu();
 		main.start(new Stage());
 		Cadastro.close();
 	}

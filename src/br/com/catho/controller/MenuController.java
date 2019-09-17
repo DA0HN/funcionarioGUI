@@ -7,7 +7,7 @@ import br.com.catho.application.Alterar;
 import br.com.catho.application.Cadastro;
 import br.com.catho.application.Excluir;
 import br.com.catho.application.ListarTodos;
-import br.com.catho.application.MainProgram;
+import br.com.catho.application.Menu;
 import br.com.catho.util.ButtonOnAction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,18 +37,18 @@ public class MenuController implements Initializable{
 	@FXML void btAlterarOnClicked(MouseEvent event) {
 		
 		alterar.start( new Stage() );
-		MainProgram.close();
+		Menu.close();
 	}
 	
 	@FXML void btCadastroOnClicked(MouseEvent event) {	
 		cadastro.start(new Stage());
-		MainProgram.close();
+		Menu.close();
 		
 	}
 	
 	@FXML void btExcluirOnClicked(MouseEvent event) {
 		excluir.start(new Stage());
-		MainProgram.close();
+		Menu.close();
 	}
 	
 	@FXML void btListarTodosOnClicked(MouseEvent event) {
@@ -61,7 +61,7 @@ public class MenuController implements Initializable{
 	}
 	
 	@FXML void btSairOnClicked(MouseEvent event) {
-		MainProgram.close();
+		Menu.close();
 	}
 	
 	@FXML void btAlterarOnKeyPressed(KeyEvent event) {
@@ -91,7 +91,7 @@ public class MenuController implements Initializable{
 	
 	@FXML void btSairOnKeyPressed(KeyEvent event) {
 		if( ButtonOnAction.hasUserConfirmed(event) ) {
-			MainProgram.close();
+			Menu.close();
 		}
 	}
 	

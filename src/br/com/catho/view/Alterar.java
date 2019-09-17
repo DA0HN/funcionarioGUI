@@ -36,7 +36,4 @@ public class Alterar extends Application{
 	public static void close() {
 		Alterar.getStage().close();
 	}
-	public static void main(String[] args) {
-		launch(args);
-	}
 }

@@ -37,8 +37,4 @@ public class ListarTodos extends Application{
 	public static void close() {
 		ListarTodos.getStage().close();
 	}
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
 }

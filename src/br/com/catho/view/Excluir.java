@@ -25,11 +25,6 @@ public class Excluir extends Application{
 			System.out.println(e.getMessage()); 
 		}
 	}
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
 	public static void close() {
 		Excluir.getStage().close();
 	}

@@ -36,7 +36,4 @@ public class Cadastro extends Application {
 		Cadastro.stage = stage;
 	}
 	
-	public static void main(String[] args) {
-		launch(args);
-	}
 }

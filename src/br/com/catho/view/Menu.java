@@ -27,10 +27,6 @@ public class Menu extends Application{
 		}
 		
 	}
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
 	public static Stage getStage() {
 		return Menu.stage;
 	}
@@ -40,9 +36,5 @@ public class Menu extends Application{
 	}
 	public static void close() {
 		Menu.getStage().close();
-	}
-	
-	public void init() {
-		start(new Stage());
 	}
 }

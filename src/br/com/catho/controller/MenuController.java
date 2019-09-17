@@ -4,11 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import br.com.catho.util.ButtonOnAction;
-import br.com.catho.view.Alterar;
-import br.com.catho.view.Cadastro;
-import br.com.catho.view.Excluir;
-import br.com.catho.view.ListarTodos;
 import br.com.catho.view.Menu;
+import br.com.catho.view.util.ViewFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,34 +22,27 @@ public class MenuController implements Initializable{
 	@FXML private Button btNumeroDeFuncionarios;
 	@FXML private Button btSair;
 	
-	private static Alterar alterar = new Alterar();
-	private static Cadastro cadastro = new Cadastro();
-	private static Excluir excluir = new Excluir();
-	private static ListarTodos listar = new ListarTodos();
-	
-	
 	@Override public void initialize(URL arg0, ResourceBundle arg1) {}
-	
 	
 	@FXML void btAlterarOnClicked(MouseEvent event) {
 		
-		alterar.start( new Stage() );
+		ViewFactory.createAlterar().start( new Stage() );
 		Menu.close();
 	}
 	
 	@FXML void btCadastroOnClicked(MouseEvent event) {	
-		cadastro.start(new Stage());
+		ViewFactory.createCadastro().start(new Stage());
 		Menu.close();
 		
 	}
 	
 	@FXML void btExcluirOnClicked(MouseEvent event) {
-		excluir.start(new Stage());
+		ViewFactory.createExcluir().start(new Stage());
 		Menu.close();
 	}
 	
 	@FXML void btListarTodosOnClicked(MouseEvent event) {
-		listar.start(new Stage());
+		ViewFactory.createListar().start(new Stage());
 		//MainProgram.close();
 	}
 	
@@ -66,25 +56,25 @@ public class MenuController implements Initializable{
 	
 	@FXML void btAlterarOnKeyPressed(KeyEvent event) {
 		if( ButtonOnAction.hasUserConfirmed(event) ) {
-			alterar.start( new Stage() );
+			ViewFactory.createAlterar().start( new Stage() );
 		}
 	}
 	
 	@FXML void btCadastroOnKeyPressed(KeyEvent event) { 
 		if( ButtonOnAction.hasUserConfirmed(event) ) {
-			cadastro.start( new Stage() );
+			ViewFactory.createCadastro().start( new Stage() );
 		}
 	}
 	
 	@FXML void btExcluirOnKeyPressed(KeyEvent event) {
 		if( ButtonOnAction.hasUserConfirmed(event) ) {
-			excluir.start( new Stage() );
+			ViewFactory.createExcluir().start( new Stage() );
 		}
 	}
 	
 	@FXML void btListarTodosOnKeyPressed(KeyEvent event) {
 		if( ButtonOnAction.hasUserConfirmed(event) ) {
-			listar.start(new Stage());
+			ViewFactory.createListar().start(new Stage());
 		}
 		//MainProgram.close();
 	}

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,38 @@ public class FuncionarioDatabase implements FuncionarioDao {
 	}
 	
 	@Override public void save(Funcionario f) {
-		
+		PreparedStatement st = null;
+		try {
+			String sql = "INSERT INTO funcionario (nome,cpf,funcao) VALUES (?,?,?)";
+			
+			st = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			st.setString(1, f.getNome());
+			st.setString(2, f.getCpf());
+			st.setString(3, f.getFuncao());
+			
+			var linhas = st.executeUpdate();
+			
+			
+			if( linhas > 0) {
+				System.out.println("Linhas alteradas: " + linhas);
+				ResultSet rs = st.getGeneratedKeys();
+				if( rs.next() ) {
+					int id = rs.getInt(1);
+					f.setId(id);
+				}
+				Database.closeResultSet(rs);
+			}
+			else {
+				throw new DatabaseException("Erro ao salvar novo funcionario: Novo funcionario não foi inserido no banco de dados.");
+			}
+		}
+		catch( SQLException e ) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeStatement(st);
+		}
 	}
 
 	@Override public void update(Funcionario f) {

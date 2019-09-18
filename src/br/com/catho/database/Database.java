@@ -39,7 +39,7 @@ public class Database {
 		return conexao;
 	}
 	
-	public void closeConnection() {
+	public static void closeConnection() {
 		if( conexao != null ) {
 			try {
 				conexao.close();
@@ -50,7 +50,7 @@ public class Database {
 		}
 	}
 	
-	public void closeStatement(Statement st) {
+	public static void closeStatement(Statement st) {
 		if( st != null ) {
 			try {
 				st.close();
@@ -61,7 +61,7 @@ public class Database {
 		}
 	}
 	
-	public void closeResultSet(ResultSet rs) {
+	public static void closeResultSet(ResultSet rs) {
 		if( rs != null ) {
 			try {
 				rs.close();

@@ -57,7 +57,27 @@ public class FuncionarioDatabase implements FuncionarioDao {
 	}
 
 	@Override public void update(Funcionario f) {
-
+		PreparedStatement st = null;
+		try {
+			
+			String sql = "UPDATE funcionario "
+					+ "SET nome=?, cpf=?, funcao=?"
+					+ "WHERE id=?";
+			st = conexao.prepareStatement(sql);
+			st.setString(1, f.getNome());
+			st.setString(2, f.getCpf());
+			st.setString(3, f.getFuncao());
+			st.setInt(4, f.getId());
+			
+			st.executeUpdate();
+			
+		}
+		catch( SQLException e) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeStatement(st);
+		}
 	}
 
 	@Override public void deleteById(Integer id) {
@@ -93,7 +113,6 @@ public class FuncionarioDatabase implements FuncionarioDao {
 			Database.closeResultSet(rs);
 		}		
 	}
-
 
 	@Override public Funcionario findByCPF(String cpf) {
 		PreparedStatement st = null;
@@ -156,7 +175,7 @@ public class FuncionarioDatabase implements FuncionarioDao {
 		}
 		
 	}
-	
+
 	private Funcionario instanciarFuncionario(ResultSet rs) throws SQLException {
 		
 		var funcionario = new Funcionario();

@@ -23,7 +23,6 @@ public class CadastroController implements Initializable{
 	@FXML private Button btSair;
 	@FXML private Button btCadastrar;
 	
-	
 	private void getUserData() {
 		try {
 			String nome = textFieldNome.getText();

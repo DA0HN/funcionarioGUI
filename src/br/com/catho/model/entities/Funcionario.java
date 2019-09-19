@@ -2,25 +2,27 @@ package br.com.catho.model.entities;
 
 public class Funcionario {
 	
+	private Integer id;
 	private String nome;
 	private String cpf;
 	private String funcao;
 	
-	private final int matricula;
-	private static int numeroDeFuncionarios = 1;
-	
-	public Funcionario(){
-		matricula = numeroDeFuncionarios++;
-	}
+	public Funcionario() {}
 	
 	public Funcionario(String nome, String cpf, String funcao) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.funcao = funcao;
-		matricula = numeroDeFuncionarios++;
 		
 	}
-
+	
+	public Funcionario(Integer id, String nome, String cpf, String funcao) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.funcao = funcao;
+		this.id = id;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -39,17 +41,17 @@ public class Funcionario {
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
 	}
-	public int getMatricula() {
-		return matricula;
+	public int getId() {
+		return this.id;
 	}
-	public static int getNumeroDeFuncionarios() {
-		return numeroDeFuncionarios;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	@Override public String toString() {
 		return  "[ Nome: " + nome +
 				", cpf: " + cpf +
 				", função: " + funcao +
-				", matricula: " + matricula +
+				", Id: " + id +
 				" ]";
 		
 	}

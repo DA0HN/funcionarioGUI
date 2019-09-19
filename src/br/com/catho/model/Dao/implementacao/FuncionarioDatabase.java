@@ -81,7 +81,25 @@ public class FuncionarioDatabase implements FuncionarioDao {
 	}
 
 	@Override public void deleteById(Integer id) {
-
+		PreparedStatement st = null;
+		try {
+			
+			String sql = "DELETE FROM funcionario WHERE id = ?";
+			st = conexao.prepareStatement(sql);
+			st.setInt(1, id);
+			st.executeUpdate();
+			
+		}
+		catch( SQLException e) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeStatement(st);
+		}
+	}
+	
+	@Override public void deleteByCPF(String cpf) {
+		
 	}
 
 	@Override public Funcionario findById(Integer id) {
@@ -187,5 +205,6 @@ public class FuncionarioDatabase implements FuncionarioDao {
 		
 		return funcionario;
 	}
+
 
 }

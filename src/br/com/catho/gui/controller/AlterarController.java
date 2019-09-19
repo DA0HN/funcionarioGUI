@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import br.com.catho.gui.view.Alterar;
 import br.com.catho.gui.view.Menu;
-import br.com.catho.model.service.FuncionarioService;
+import br.com.catho.model.service.FuncionarioServiceLocal;
 import br.com.catho.util.ButtonOnAction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,7 +24,7 @@ public class AlterarController implements Initializable{
 	@FXML private TextField textFieldCPFDesejado;
 	
 	private void changeDataUser() {
-		FuncionarioService.alteracao(
+		FuncionarioServiceLocal.alteracao(
 				textFieldCPFDesejado.getText(),
 				textFieldNovoNome.getText(),
 				textFieldNovoCPF.getText(),

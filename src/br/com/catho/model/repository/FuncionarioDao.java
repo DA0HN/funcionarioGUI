@@ -1,4 +1,4 @@
-package br.com.catho.model.Dao;
+package br.com.catho.model.repository;
 
 import java.util.List;
 

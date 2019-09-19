@@ -1,78 +1,222 @@
 package br.com.catho.model.service;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.catho.database.Database;
+import br.com.catho.database.DatabaseException;
 import br.com.catho.model.entities.Funcionario;
+import br.com.catho.model.repository.FuncionarioDao;
 
-public class FuncionarioService {
+public class FuncionarioService implements FuncionarioDao {
+
+	private Connection conexao;
 	
-	private static List<Funcionario> funcionarios = new ArrayList<>();
-	
-	public static int getLengthFuncionarios() {
-		return funcionarios.size();
+	public FuncionarioService(Connection conexao){
+		this.conexao = conexao;
 	}
 	
-	public static List<Funcionario> getFuncionarios() {
-		return FuncionarioService.funcionarios;
-	}
-	public static void setFuncionarios(List<Funcionario> listaAtualizada) {
-		FuncionarioService.funcionarios = listaAtualizada;
-	}
-	private static boolean cpfJaExistente(String CPF) {
-		for(Funcionario f : funcionarios) {
-			if( f != null ) {
-				if( CPF.equals(f.getCpf()) )
-					return true;
+	@Override public void save(Funcionario f) {
+		PreparedStatement st = null;
+		try {
+			String sql = "INSERT INTO funcionario (nome,cpf,funcao) VALUES (?,?,?)";
+			
+			st = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			st.setString(1, f.getNome());
+			st.setString(2, f.getCpf());
+			st.setString(3, f.getFuncao());
+			
+			var linhas = st.executeUpdate();
+			
+			
+			if( linhas > 0) {
+				System.out.println("Linhas alteradas: " + linhas);
+				ResultSet rs = st.getGeneratedKeys();
+				if( rs.next() ) {
+					int id = rs.getInt(1);
+					f.setId(id);
+				}
+				Database.closeResultSet(rs);
+			}
+			else {
+				throw new DatabaseException("Erro ao salvar novo funcionario: Novo funcionario não foi inserido no banco de dados.");
 			}
 		}
-		return false;
-	}
-	
-	public static Funcionario cadastro(String nome, String cpf, String funcao) {
-		if( !cpfJaExistente(cpf) ) {
-			Funcionario f = new Funcionario(
-									nome,
-									cpf,
-									funcao);
-			funcionarios.add(f);
-			return f;
+		catch( SQLException e ) {
+			throw new DatabaseException( e.getMessage() );
 		}
-		else {				
-			System.out.println("CPF ja foi inserido! ");
-			return null;
+		finally {
+			Database.closeStatement(st);
 		}
 	}
+
+	@Override public void update(Funcionario f) {
+		PreparedStatement st = null;
+		try {
+			
+			String sql = "UPDATE funcionario "
+					+ "SET nome=?, cpf=?, funcao=?"
+					+ "WHERE id=?";
+			st = conexao.prepareStatement(sql);
+			st.setString(1, f.getNome());
+			st.setString(2, f.getCpf());
+			st.setString(3, f.getFuncao());
+			st.setInt(4, f.getId());
+			
+			st.executeUpdate();
+			
+		}
+		catch( SQLException e) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeStatement(st);
+		}
+	}
+
+	@Override public void deleteById(Integer id) {
+		PreparedStatement st = null;
+		try {
+			
+			String sql = "DELETE FROM funcionario WHERE id = ?";
+			st = conexao.prepareStatement(sql);
+			st.setInt(1, id);
+			st.executeUpdate();
+			
+		}
+		catch( SQLException e) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeStatement(st);
+		}
+	}
 	
-	public static void alteracao( String cpf, String novoNome, String novoCPF, String novaFuncao) {
-		for( Funcionario f : funcionarios ) {
-			if( f.getCpf().equals(cpf) ) {
-				System.out.println("Funcionario: "+ f.toString());
-				if( !novoCPF.isBlank() || !novoCPF.isEmpty()) {
-					f.setCpf(novoCPF);
-				}
-				if( !novoNome.isBlank() || !novoCPF.isEmpty()) {
-					f.setNome(novoNome);	
-				}
-				if( !novaFuncao.isBlank() || !novaFuncao.isEmpty()) {
-					f.setFuncao(novaFuncao);
-				}
-				System.out.println("Foi alterado para: \n"+ f.toString());
-				FuncionarioService.setFuncionarios(funcionarios);
-				return;
+	@Override public void deleteByCPF(String cpf) {
+		PreparedStatement st = null;
+		try {
+			String sql = "DELETE FROM funcionario WHERE cpf = ?";
+			st = conexao.prepareStatement(sql);
+			st.setString(1, cpf);
+			st.executeUpdate();
+		}
+		catch( SQLException e) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeStatement(st);
+		}
+	}
+
+	@Override public Funcionario findById(Integer id) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM funcionario WHERE funcionario.id = ?"; 
+		try {
+			
+			st = conexao.prepareStatement(sql);
+			
+			st.setInt(1, id);
+			
+			rs = st.executeQuery();
+			
+			if( rs.next() ) {
+				Funcionario f = instanciarFuncionario(rs);
+				return f;
 			}
-		}
-		System.out.println("Funcionario não encontrado");
-		return;
-	}
-	
-	public static void exclusao(String cpf) {
-		for( Funcionario f : funcionarios ) {
-			if( f.getCpf().equals(cpf) ) {
-				System.out.println("Funcionario removido: " + f.toString());
-				funcionarios.remove(f);
-				return;
+			else {
+				throw new DatabaseException("Erro ao executar FindById(): Não foi encontrando funcionario com esse Id.");
 			}
+			
+		}
+		catch( SQLException e) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeStatement(st);
+			Database.closeResultSet(rs);
+		}		
+	}
+
+	@Override public Funcionario findByCPF(String cpf) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			
+			String sql = "SELECT * FROM funcionario WHERE funcionario.cpf = ?";
+			st = conexao.prepareStatement(sql);
+			
+			st.setString(1, cpf);
+			
+			rs = st.executeQuery();
+			
+			if( rs.next() ) {
+				Funcionario f = instanciarFuncionario(rs);
+				
+				return f;
+			}
+			else {
+				throw new DatabaseException("Erro ao executar findByCPF(): Não foi encontrado funcionario com esse CPF.");
+			}
+			
+		}
+		catch(SQLException e) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeResultSet(rs);
+			Database.closeStatement(st);
 		}
 	}
+
+	@Override public List<Funcionario> findAll() {
+		
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			
+			String sql = "SELECT * FROM funcionario";
+			
+			st = conexao.prepareStatement(sql);
+			
+			rs = st.executeQuery();
+			
+			List<Funcionario> list = new ArrayList<Funcionario>();
+			
+			while( rs.next() ) {
+				list.add( instanciarFuncionario(rs) );
+			}
+			
+			return list;
+			
+		}
+		catch( SQLException e) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeStatement(st);
+			Database.closeResultSet(rs);
+		}
+		
+	}
+
+	private Funcionario instanciarFuncionario(ResultSet rs) throws SQLException {
+		
+		var funcionario = new Funcionario();
+		
+		funcionario.setNome( rs.getString("nome") );
+		funcionario.setCpf( rs.getString("cpf"));
+		funcionario.setFuncao( rs.getString("funcao") );
+		funcionario.setId( rs.getInt("id") );
+		
+		return funcionario;
+	}
+
+
 }

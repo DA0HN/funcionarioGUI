@@ -1,10 +1,4 @@
-package br.com.catho.view.util;
-
-import br.com.catho.view.Alterar;
-import br.com.catho.view.Cadastro;
-import br.com.catho.view.Excluir;
-import br.com.catho.view.ListarTodos;
-import br.com.catho.view.Menu;
+package br.com.catho.gui.view;
 
 public class ViewFactory {
 	

@@ -1,4 +1,4 @@
-package br.com.catho.controller;
+package br.com.catho.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;

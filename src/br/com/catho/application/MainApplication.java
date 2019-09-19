@@ -1,6 +1,6 @@
 package br.com.catho.application;
 
-import br.com.catho.view.util.ViewFactory;
+import br.com.catho.gui.view.ViewFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

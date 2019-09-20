@@ -79,6 +79,29 @@ public class FuncionarioService implements FuncionarioDao {
 			Database.closeStatement(st);
 		}
 	}
+	
+	@Override public void updateByCPF(Funcionario f, String cpfDeBusca) {
+		PreparedStatement st = null;
+		try {
+			
+			String sql = "UPDATE funcionario "
+					+ "SET nome=?, funcao=?"
+					+ "WHERE cpf=?";
+			st = conexao.prepareStatement(sql);
+			st.setString(1, f.getNome());
+			st.setString(2, f.getFuncao());
+			st.setString(3, cpfDeBusca);
+			
+			st.executeUpdate();
+			
+		}
+		catch( SQLException e) {
+			throw new DatabaseException( e.getMessage() );
+		}
+		finally {
+			Database.closeStatement(st);
+		}
+	}
 
 	@Override public void deleteById(Integer id) {
 		PreparedStatement st = null;

@@ -4,7 +4,7 @@ import br.com.catho.gui.view.ViewFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class MainApplication extends Application{
+public class MainApplication extends Application {
 
 	@Override public void start(Stage stage) {
 		ViewFactory.createMenu().start(new Stage());

@@ -10,16 +10,15 @@
    <children>
       <Button fx:id="btCancelar" layoutX="70.0" layoutY="345.0" mnemonicParsing="false" onKeyPressed="#btCancelarOnKeyPressed" onMouseClicked="#btCancelarOnClicked" text="Cancelar" />
       <Button fx:id="btAlterar" layoutX="229.0" layoutY="345.0" mnemonicParsing="false" onKeyPressed="#btAlterarOnKeyPressed" onMouseClicked="#btAlterarOnClicked" text="Alterar" />
-      <TextField fx:id="textFieldNovoNome" layoutX="70.0" layoutY="200.0" prefHeight="25.0" prefWidth="211.0" promptText="Novo Nome do Funcionario" />
-      <TextField fx:id="textFieldNovoCPF" layoutX="70.0" layoutY="250.0" prefHeight="25.0" prefWidth="211.0" promptText="Novo CPF ( Opcional )" />
+      <TextField fx:id="textFieldNovoNome" layoutX="70.0" layoutY="244.0" prefHeight="25.0" prefWidth="211.0" promptText="Novo Nome do Funcionario" />
       <TextField fx:id="textFieldNovaFuncao" layoutX="70.0" layoutY="296.0" prefHeight="25.0" prefWidth="211.0" promptText="Nova Função do Funcionario" />
-      <TextField fx:id="textFieldCPFDesejado" layoutX="70.0" layoutY="100.0" prefHeight="25.0" prefWidth="211.0" promptText="CPF para localização do funcionario" />
-      <Label layoutX="41.0" layoutY="46.0" text="Alteração dos Dados do funcionario">
+      <TextField fx:id="textFieldCPFDesejado" layoutX="73.0" layoutY="123.0" prefHeight="25.0" prefWidth="211.0" promptText="CPF para localização do funcionario" />
+      <Label layoutX="41.0" layoutY="69.0" text="Alteração dos Dados do funcionario">
          <font>
             <Font name="Constantia Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="127.0" layoutY="155.0" text="Novos dados">
+      <Label layoutX="127.0" layoutY="189.0" text="Novos dados">
          <font>
             <Font name="Constantia Italic" size="18.0" />
          </font>

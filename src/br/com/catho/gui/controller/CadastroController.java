@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import br.com.catho.database.DatabaseException;
 import br.com.catho.gui.view.Cadastro;
 import br.com.catho.gui.view.Menu;
+import br.com.catho.gui.view.ViewFactory;
 import br.com.catho.model.entities.Funcionario;
 import br.com.catho.model.repository.DaoFactory;
 import br.com.catho.model.service.FuncionarioService;
@@ -51,12 +52,14 @@ public class CadastroController implements Initializable{
 	
 	@FXML void btCadastrarOnClicked(MouseEvent event) {
 		getUserData();
+		closeCadastroStage();
 		
 	}
 	
 	@FXML void btCadastrarOnKeyPressed(KeyEvent event) {
 		if( ButtonOnAction.hasUserConfirmed(event) ) {
 			getUserData();
+			closeCadastroStage();
 		}
 	}
 	
@@ -71,8 +74,8 @@ public class CadastroController implements Initializable{
 	}
 	
 	private void closeCadastroStage() {
-		Menu main = new Menu();
-		main.start(new Stage());
+		Menu menu = ViewFactory.createMenu();
+		menu.start(new Stage());
 		Cadastro.close();
 	}
 	

@@ -5,7 +5,9 @@ import java.util.ResourceBundle;
 
 import br.com.catho.gui.view.Alterar;
 import br.com.catho.gui.view.Menu;
-import br.com.catho.model.service.FuncionarioServiceLocal;
+import br.com.catho.model.entities.Funcionario;
+import br.com.catho.model.repository.DaoFactory;
+import br.com.catho.model.service.FuncionarioService;
 import br.com.catho.util.ButtonOnAction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,21 +21,17 @@ public class AlterarController implements Initializable{
 	@FXML private Button btCancelar;
 	@FXML private Button btAlterar;
 	@FXML private TextField textFieldNovoNome;
-	@FXML private TextField textFieldNovoCPF;
 	@FXML private TextField textFieldNovaFuncao;
 	@FXML private TextField textFieldCPFDesejado;
 	
 	private void changeDataUser() {
-		FuncionarioServiceLocal.alteracao(
-				textFieldCPFDesejado.getText(),
-				textFieldNovoNome.getText(),
-				textFieldNovoCPF.getText(),
-				textFieldNovaFuncao.getText());
+		String cpf = textFieldCPFDesejado.getText();
+		String nome = textFieldNovoNome.getText();
+		String funcao = textFieldNovaFuncao.getText();
 		
-		// Atualiza a lista da View ListarTodos
-		ListarTodosController view = new ListarTodosController();
-		view.setObservableList(view.atualizaTabela());
-		
+		Funcionario funcionario = new Funcionario(nome,cpf,funcao);
+		FuncionarioService service = DaoFactory.createFuncionarioDao();
+		service.updateByCPF(funcionario, cpf);
 	}
 	
 	@FXML void btAlterarOnClicked() {

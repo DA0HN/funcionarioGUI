@@ -1,9 +1,10 @@
-package br.com.catho.controller;
+package br.com.catho.gui.controller;
 
+import br.com.catho.gui.view.Excluir;
+import br.com.catho.gui.view.Menu;
+import br.com.catho.model.repository.DaoFactory;
 import br.com.catho.model.service.FuncionarioService;
 import br.com.catho.util.ButtonOnAction;
-import br.com.catho.view.Excluir;
-import br.com.catho.view.Menu;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -24,7 +25,11 @@ public class ExcluirController {
 	
 	private void removeUserData() {
 		String cpf = textFieldCPF.getText();
-		FuncionarioService.exclusao(cpf);
+		
+		FuncionarioService service = DaoFactory.createFuncionarioDao();
+		
+		service.deleteByCPF(cpf);
+	
 	}
 	
 	@FXML void btCancelarOnClicked() {

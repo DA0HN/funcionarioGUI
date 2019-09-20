@@ -1,4 +1,4 @@
-package br.com.catho.view;
+package br.com.catho.gui.view;
 
 import java.io.IOException;
 
@@ -8,33 +8,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Menu extends Application{
+public class Alterar extends Application{
 
 	private static Stage stage;
 	
-	@Override public void start(Stage stage){
+	@Override public void start(Stage stage) {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("../fxml/Menu.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("../fxml/Alterar.fxml"));
 			Scene scene = new Scene(parent);
-			setStage(stage);
 			stage.setScene(scene);
+			stage.setTitle("Alterar");
 			stage.setResizable(false);
-			stage.setTitle("Menu");
+			setStage(stage);
 			stage.show();
-			
-		}catch(IOException e) {
-			System.out.println(e.getMessage()); 
 		}
-		
-	}
-	public static Stage getStage() {
-		return Menu.stage;
+		catch(IOException e) {
+			e.getMessage();
+		}
 	}
 	
+	public static Stage getStage() {
+		return Alterar.stage;
+	}
 	public static void setStage(Stage stage) {
-		Menu.stage = stage;
+		Alterar.stage = stage;
 	}
 	public static void close() {
-		Menu.getStage().close();
+		Alterar.getStage().close();
 	}
 }

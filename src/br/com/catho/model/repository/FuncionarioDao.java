@@ -1,4 +1,4 @@
-package br.com.catho.model.Dao;
+package br.com.catho.model.repository;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ public interface FuncionarioDao {
 	
 	void save(Funcionario f);
 	void update(Funcionario f);
+	void updateByCPF(Funcionario f, String cpfDeBusca);
 	void deleteById(Integer id);
 	void deleteByCPF(String cpf);
 	Funcionario findById(Integer id);

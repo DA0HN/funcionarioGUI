@@ -1,4 +1,4 @@
-package br.com.catho.view;
+package br.com.catho.gui.view;
 
 import java.io.IOException;
 
@@ -8,32 +8,33 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Cadastro extends Application {
+public class ListarTodos extends Application{
 
 	private static Stage stage;
 	
 	@Override public void start(Stage stage) {
 		try {
-			Parent parent = FXMLLoader.load(getClass().getResource("../fxml/Cadastro.fxml"));
+			Parent parent = FXMLLoader.load(getClass().getResource("../fxml/ListarTodos.fxml"));
 			Scene scene = new Scene(parent);
-			stage.setTitle("Cadastro");
-			stage.setResizable(false);
 			stage.setScene(scene);
+			stage.setTitle("Listar Todos Funcionarios");
+			stage.setResizable(false);
 			setStage(stage);
 			stage.show();
 		}
 		catch(IOException e) {
 			e.getMessage();
 		}
-	}
-	public static void close() {
-		Cadastro.getStage().close();
-	}
-	public static Stage getStage() {
-		return Cadastro.stage;
-	}
-	public static void setStage(Stage stage) {
-		Cadastro.stage = stage;
+		
 	}
 	
+	public static void setStage(Stage stage) {
+		ListarTodos.stage = stage;
+	}
+	public static Stage getStage() {
+		return ListarTodos.stage;
+	}
+	public static void close() {
+		ListarTodos.getStage().close();
+	}
 }

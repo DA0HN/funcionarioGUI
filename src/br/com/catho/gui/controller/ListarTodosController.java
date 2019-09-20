@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.com.catho.database.DatabaseException;
 import br.com.catho.gui.exceptions.GUIException;
 import br.com.catho.gui.listeners.DataChangeListener;
 import br.com.catho.model.entities.Funcionario;
@@ -12,7 +13,6 @@ import br.com.catho.model.service.FuncionarioService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -61,6 +61,9 @@ public class ListarTodosController implements Initializable, DataChangeListener 
 	
 	
 	public void atualizaTabela(){
+		if( service == null ) {
+			throw new DatabaseException("service is null");
+		}
 		List<Funcionario> list = service.findAll();
 		observableList = FXCollections.observableArrayList(list);
 		tableFuncionario.setItems(observableList);

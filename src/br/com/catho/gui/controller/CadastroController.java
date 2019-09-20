@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.catho.database.DatabaseException;
+import br.com.catho.gui.exceptions.GUIException;
 import br.com.catho.gui.listeners.DataChangeListener;
 import br.com.catho.gui.view.Cadastro;
 import br.com.catho.gui.view.ViewFactory;
@@ -37,6 +38,10 @@ public class CadastroController implements Initializable{
 			String CPF = textFieldCPF.getText();
 			String funcao = textFieldFuncao.getText();
 			
+			if(nome.isBlank() || nome.isEmpty() || CPF.isBlank() || CPF.isEmpty() || funcao.isBlank() || funcao.isEmpty() ) {
+				throw new IllegalStateException("Os dados inseridos são inválidos");
+			}
+			
 			//System.out.println(FuncionarioServiceLocal.cadastro(nome, CPF, funcao).toString());
 			
 			Funcionario funcionario = new Funcionario(nome, CPF, funcao);
@@ -50,15 +55,22 @@ public class CadastroController implements Initializable{
 			notifyDataChangeListeners();
 			
 			
-		}catch(Exception e) {
-			throw new DatabaseException( e.getMessage() );
+		}
+		catch(IllegalStateException e ) {
+			throw new GUIException(e.getMessage());
 		}
 	}
 	
 	// notifica sobre o evento todos que estão inscritos 
 	private void notifyDataChangeListeners() {
-		for(DataChangeListener listener  : dataChangeListeners ) {
-			listener.onDataChanged();
+		
+		try {
+			for(DataChangeListener listener  : dataChangeListeners ) {
+				listener.onDataChanged();
+			}
+		} 
+		catch (NullPointerException e) {
+			throw new GUIException("Não foi possivel notificar as novas alterações!");
 		}
 	}
 

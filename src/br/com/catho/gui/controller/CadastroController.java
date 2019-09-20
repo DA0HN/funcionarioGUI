@@ -1,11 +1,15 @@
 package br.com.catho.gui.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import br.com.catho.database.DatabaseException;
 import br.com.catho.gui.view.Cadastro;
 import br.com.catho.gui.view.Menu;
-import br.com.catho.model.service.FuncionarioServiceLocal;
+import br.com.catho.model.entities.Funcionario;
+import br.com.catho.model.repository.DaoFactory;
+import br.com.catho.model.repository.FuncionarioDao;
 import br.com.catho.util.ButtonOnAction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,15 +33,26 @@ public class CadastroController implements Initializable{
 			String CPF = textFieldCPF.getText();
 			String funcao = textFieldFuncao.getText();
 			
-			System.out.println(FuncionarioServiceLocal.cadastro(nome, CPF, funcao).toString());
+			//System.out.println(FuncionarioServiceLocal.cadastro(nome, CPF, funcao).toString());
+			
+			Funcionario funcionario = new Funcionario(nome, CPF, funcao);
+			
+			FuncionarioDao dao = DaoFactory.createFuncionarioDao();
+			
+			dao.save(funcionario);
+			
+			System.out.println(funcionario);
+			
+			
 			
 		}catch(Exception e) {
-			e.getMessage();
+			throw new DatabaseException( e.getMessage() );
 		}
 	}
 	
 	@FXML void btCadastrarOnClicked(MouseEvent event) {
 		getUserData();
+		
 	}
 	
 	@FXML void btCadastrarOnKeyPressed(KeyEvent event) {

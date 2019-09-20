@@ -20,7 +20,7 @@
       <HBox prefHeight="27.0" prefWidth="450.0" BorderPane.alignment="CENTER">
          <children>
             <Separator prefWidth="190.0" />
-            <Button fx:id="btAtualizar" mnemonicParsing="false" onMouseClicked="#btAtualizarOnClicked" text="Button" />
+            <Button fx:id="btAtualizar" mnemonicParsing="false" onMouseClicked="#btAtualizarOnClicked" text="Atualizar" />
          </children>
       </HBox>
    </bottom>

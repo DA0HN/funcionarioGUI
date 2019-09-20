@@ -1,11 +1,13 @@
 package br.com.catho.gui.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import br.com.catho.database.DatabaseException;
+import br.com.catho.gui.listeners.DataChangeListener;
 import br.com.catho.gui.view.Cadastro;
-import br.com.catho.gui.view.Menu;
 import br.com.catho.gui.view.ViewFactory;
 import br.com.catho.model.entities.Funcionario;
 import br.com.catho.model.repository.DaoFactory;
@@ -27,6 +29,8 @@ public class CadastroController implements Initializable{
 	@FXML private Button btSair;
 	@FXML private Button btCadastrar;
 	
+	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
+	
 	private void getUserData() {
 		try {
 			String nome = textFieldNome.getText();
@@ -43,11 +47,23 @@ public class CadastroController implements Initializable{
 			
 			System.out.println(funcionario);
 			
+			notifyDataChangeListeners();
 			
 			
 		}catch(Exception e) {
 			throw new DatabaseException( e.getMessage() );
 		}
+	}
+	
+	// notifica sobre o evento todos que estão inscritos 
+	private void notifyDataChangeListeners() {
+		for(DataChangeListener listener  : dataChangeListeners ) {
+			listener.onDataChanged();
+		}
+	}
+
+	public void subscribeDataChangeListener(DataChangeListener listener ) {
+		dataChangeListeners.add(listener);
 	}
 	
 	@FXML void btCadastrarOnClicked(MouseEvent event) {
@@ -74,8 +90,7 @@ public class CadastroController implements Initializable{
 	}
 	
 	private void closeCadastroStage() {
-		Menu menu = ViewFactory.createMenu();
-		menu.start(new Stage());
+		ViewFactory.createMenu().start(new Stage());
 		Cadastro.close();
 	}
 	

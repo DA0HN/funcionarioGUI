@@ -4,7 +4,7 @@ public class GUIException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 
-	GUIException(String mensagem){
+	public GUIException(String mensagem){
 		super(mensagem);
 	}
 	

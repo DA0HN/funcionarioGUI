@@ -1,7 +1,6 @@
 package br.com.catho.gui.controller;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import br.com.catho.database.DatabaseException;
@@ -9,7 +8,7 @@ import br.com.catho.gui.view.Cadastro;
 import br.com.catho.gui.view.Menu;
 import br.com.catho.model.entities.Funcionario;
 import br.com.catho.model.repository.DaoFactory;
-import br.com.catho.model.repository.FuncionarioDao;
+import br.com.catho.model.service.FuncionarioService;
 import br.com.catho.util.ButtonOnAction;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,9 +36,9 @@ public class CadastroController implements Initializable{
 			
 			Funcionario funcionario = new Funcionario(nome, CPF, funcao);
 			
-			FuncionarioDao dao = DaoFactory.createFuncionarioDao();
+			FuncionarioService service = DaoFactory.createFuncionarioDao();
 			
-			dao.save(funcionario);
+			service.save(funcionario);
 			
 			System.out.println(funcionario);
 			
